@@ -41,25 +41,17 @@ public class StatsService {
 
     public long midSales(long[] sales) {
 
-        long midSales = 0;
+        long sumSales = sumSales(sales);
         long averagePrice = 0;
 
-        for (int i = 0; i < sales.length; i++) {
-            midSales = midSales + sales[i];
-        }
-        return averagePrice = midSales / sales.length;
+        return averagePrice = sumSales / sales.length;
     }
 
     public long countUpToMidSales(long[] sales) {
 
         long monthSales = 0;//продажи в мес
-        long averagePrice = 0;//средние продажи в мес
         long upMidMonth = 0;//месяц где  продажи больше среднего
-
-        for (int i = 0; i < sales.length; i++) {
-            monthSales = monthSales + sales[i];
-            averagePrice = monthSales / sales.length;
-        }
+        long averagePrice = midSales(sales);
 
         for (long t : sales) {
             if (t > averagePrice) {
@@ -74,14 +66,9 @@ public class StatsService {
     public long countDownToMidSales(long[] sales) {
 
         long monthSales = 0;//продажи в мес
-        long averagePrice = 0;//средние продажи в мес
+        long averagePrice = midSales(sales);//средние продажи в мес
         long downMidMonth = 0;//месяц где  продажи больше среднего
-
-        for (int i = 0; i < sales.length; i++) {
-            monthSales = monthSales + sales[i];
-            averagePrice = monthSales / sales.length;
-        }
-
+        
         for (long t : sales) {
             if (t < averagePrice) {
                 downMidMonth = downMidMonth + 1;
